@@ -1,0 +1,75 @@
+@extends('main')
+
+@section('title', '| Contact')
+@section('content')
+<div  style="background-image: url('/images/image1.png'); height : 600px;" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+        <div class="col-md-12 ftco-animate">
+            <h1 class="mb-4 mb-md-0">Contact Us</h1>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="text">
+                        <p>"Creating ideas and building brands that truly matter to people"</p>
+                        <div class="mouse">
+                            <a href="#" class="mouse-icon">
+                            <div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="container pt-4">
+      <div class="row d-flex mb-5 contact-info">
+        <div class="col-md-12 mb-4">
+          <h2 class="h3">Contact Information</h2>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-md-3">
+          <p><span>Address :</span> 28 Nguyen Tri Phuong St, Phu Hoi Ward, Hue City</p>
+        </div>
+        <div class="col-md-3">
+          <p><span>Phone :</span> </p> <p> <a href="tel://1234567920">+84 123 456 789 </a></p>
+        </div>
+        <div class="col-md-3">
+          <p><span>Email :</span> <a href="mailto:info@yoursite.com">dongdontcare@outlook.com</a></p>
+        </div>
+        <div class="col-md-3">
+          <p><span>Website</span> <a href="#">dongdontcare.freevnn.com</a></p>
+        </div>
+      </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Contact Me</h1>
+                <hr>
+                <form action="{{ url('contact') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label name="email">Email:</label>
+                        <input id="email" name="email" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label name="subject">Subject:</label>
+                        <input id="subject" name="subject" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label name="message">Message:</label>
+                        <textarea id="message" name="message" class="form-control">Type your message here...</textarea>
+                    </div>
+
+                    <input type="submit" value="Send Message" class="btn btn-success">
+                </form>
+            </div>
+        </div>
+        </div>
+@endsection
