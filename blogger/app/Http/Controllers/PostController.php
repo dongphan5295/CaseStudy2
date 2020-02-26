@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Tag;
 use App\Post;
 use Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\DataTables as DataTablesDataTables;
 
 class PostController extends Controller
 {
@@ -24,8 +26,26 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
-        return view('posts.index')->withPosts($posts);
+        $posts = Post::all();
+        $categories = Category::all();
+        $tags = Tag::all();
+        $comments = Comment::all();
+
+        if(request()->ajax()){
+            return DataTablesDataTables::of($posts)
+            ->editColumn('body', function($posts){
+               $a = substr(strip_tags($posts->body), 0, 50);
+               return $a;
+            })->addColumn('action', function($posts){
+                return '<a href="posts/' .$posts->id.'" class="btn"><i class="fa fa-eye"></i></a>'.
+                '<button type="button" class="btn btn-outline-primary delete-post" data-toggle="modal" data-target="#confirm-modal" data-id ="' . $posts->id . '"><i
+                class="fa fa-trash"></i></button>'
+                . '<a href="posts/' .$posts->id.'/edit" class="btn"><i class="fa fa-edit"></i></a>';
+                        })
+
+            ->make(true);
+        }
+        return view('posts.dashboard')->withPosts($posts)->withCategories($categories)->withTags($tags)->withComments($comments);
     }
 
     /**
@@ -109,7 +129,7 @@ class PostController extends Controller
         }
 
         $tags = Tag::all();
-        $tags2 = array();
+        $tags2 = [];
         foreach ($tags as $tag) {
             $tags2[$tag->id] = $tag->name;
         }
@@ -129,7 +149,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        if ($request->input('slug') == $post->slug) {
+        if (request('slug') == $post->slug) {
             $this->validate($request, array(
                 'title' => 'required|max:255',
                 'category_id' => 'required|integer',

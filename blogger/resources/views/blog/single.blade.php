@@ -24,14 +24,14 @@
 	<div class="container pt-4">
         <div class="row">
         	<div class="col-lg-8 col-md-offset-2">
-            <h1>{{ $post->title }}</h1>
+            <h1><strong>{{ $post->title }}</strong></h1>
 
 			@if(!empty($post->image))
 				<img src="{{asset('/images/' . $post->image)}}" width="800" height="400" />
 			@endif
 			<p>{!! $post->body !!}</p>
 			<hr>
-            <p>Posted In : {{ $post->category->name }}</p>
+            <p>Posted By : {{ Auth::user()->name }}</p>
             <p>Posted At : {{ date('M j, Y', strtotime($post->updated_at))}}</p>
             <div class="tagcloud">
 				@foreach ($post->tags as $tag)
@@ -43,7 +43,7 @@
         <div class="col-lg-4 sidebar pl-lg-5 ftco-animate">
             <div class="sidebar-box">
             <form action="{{ route('keyword.search')}}" class="search-form" method="GET">
-                {{ csrf_field() }}
+                {{-- {{ csrf_field() }} --}}
                 <div class="form-group">
                   <input type="text" name="key" class="form-control" placeholder="Type a keyword and hit enter">
                   <button type="submit" class="icon icon-search"></button>

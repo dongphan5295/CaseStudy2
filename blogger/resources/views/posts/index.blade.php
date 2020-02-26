@@ -2,6 +2,10 @@
 
 @section('title', '| All Posts')
 
+@section('stylesheet')
+<link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+
+@endsection
 @section('content')
 
 <div class="hero-wrap" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
@@ -64,9 +68,9 @@
 				</tbody>
 			</table>
 
-			<div class="text-center">
+			{{-- <div class="text-center">
 				{!! $posts->links(); !!}
-			</div>
+			</div> --}}
 		</div>
 	</div>
 

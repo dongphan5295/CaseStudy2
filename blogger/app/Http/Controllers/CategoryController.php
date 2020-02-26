@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Yajra\DataTables\DataTables;
+
 
 class CategoryController extends Controller
 {
@@ -21,8 +23,22 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        if(request()->ajax()){
+            return DataTables::of($categories)
+            ->addColumn('action', function ($categories) {
+                return '
+        <div class="btn-group btn-group-sm">
+        <button type="button" class="btn btn-outline-primary edit-cate" data-toggle="modal" data-target="#cate3" data-id ="' . $categories->id . '"><i
+        class="fa fa-edit"></i></button>' .
+                    '<button type="button" class="btn btn-outline-primary delete-cate" data-toggle="modal" data-target="#confirm-modal" data-id ="' . $categories->id . '"><i
+        class="fa fa-trash"></i></button>
+        </div>';
+            })
 
-        return view('categories.index')->withCategories($categories);
+            ->make(true);
+        }
+
+        return view('categories.test')->withCategories($categories);
     }
 
     /**
@@ -80,7 +96,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('categories.edit')->withCategory($category);
+        return response()->json($category);
     }
 
     /**
@@ -99,7 +115,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        Session::flash('success', 'Successfully saved your new category!');
+        // Session::flash('success', 'Successfully saved your new category!');
 
         return redirect()->route('categories.index');
     }
@@ -112,8 +128,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->posts()->detach();
+        $category = Category::findOrFail($id);
+        // $category->posts()->detach();
 
         $category->delete();
 

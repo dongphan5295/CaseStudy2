@@ -3,7 +3,7 @@
       <div class="row mb-5">
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
-            <h2 class="logo"><a href="#">Crush</a></h2>
+            <h2 class="logo"><a href="#">Travel Blogger</a></h2>
             <p>"Creating ideas and building brands that truly matter to people"</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
               <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
@@ -18,10 +18,10 @@
           <div class="ftco-footer-widget mb-4 ml-md-5">
             <h2 class="ftco-heading-2">Information</h2>
             <ul class="list-unstyled">
-              <li><a href="#" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Home</a></li>
-              <li><a href="#" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>About</a></li>
-              <li><a href="#" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Articles</a></li>
-              <li><a href="#" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Contact</a></li>
+            <li><a href="/" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Home</a></li>
+            <li><a href="/about" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>About</a></li>
+            <li><a href="{{route('blog.index')}}" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Articles</a></li>
+              <li><a href="/contact" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Contact</a></li>
             </ul>
           </div>
         </div>

@@ -1,28 +1,11 @@
-@extends('main')
+@extends('main2')
 
 @section('title', '| View Post')
 
 @section('content')
 
 
-<div class="hero-wrap" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
-        <div class="col-md-12 ftco-animate">
-            {{-- <h2 class="subheading">Hello! Welcome to</h2> --}}
-            <h1 class="mb-4 mb-md-0">Post</h1>
-            <div class="row">
-                <div class="col-md-7">
-                    {{-- <div class="text">
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                    </div> --}}
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
 	<div class="container pt-4">
 		<div class="col-md-8">

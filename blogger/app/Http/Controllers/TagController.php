@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
+use Yajra\DataTables\DataTables;
 
 class TagController extends Controller
 {
@@ -26,9 +26,21 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::all();
+        if(request()->ajax()){
+            return DataTables::of($tags)
+            ->addColumn('action', function ($tags) {
+                return '
+                <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-outline-primary edit-tag" data-toggle="modal" data-target="#tag-1" data-id ="' . $tags->id . '"><i
+        class="fa fa-edit"></i></button>'.'&emsp;'.
+                '<button type="button" class="btn btn-outline-primary delete-tag" data-toggle="modal" data-target="#confirm-modal" data-id ="' . $tags->id . '"><i
+                class="fa fa-trash"></i></button>
+                </div>';
+            })
+            ->make(true);
+        }
         return view('tags.index')->withTags($tags);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -68,7 +80,8 @@ class TagController extends Controller
     public function edit($id)
     {
         $tag = Tag::find($id);
-        return view('tags.edit')->withTag($tag);
+        return response()->json($tag);
+
     }
 
     /**
