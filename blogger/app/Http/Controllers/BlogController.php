@@ -17,7 +17,7 @@ class BlogController extends Controller
 
     public function getSingle($slug){
         $post = Post::where('slug', '=', $slug )->first();
-        $pst = Post::latest()->limit(3)->get();
+        $pst = Post::latest()->limit(5)->get();
         $tags = Tag::all();
         $cates = Category::all();
         return view('blog.single')->withPost($post)->withTags($tags)->withPst($pst)->withCates($cates);

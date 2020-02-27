@@ -21,21 +21,21 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="examples/icons.html">
-                            <i class="ni ni-planet text-orange"></i>
-                            <span class="nav-link-text">Icons</span>
+                        <a class="nav-link" href="/softdelete">
+                            <i class="fa fa-blog"></i>
+                            <span class="nav-link-text">Deleted Post</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="examples/profile.html">
-                            <i class="ni ni-single-02 text-yellow"></i>
-                            <span class="nav-link-text">Profile</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="examples/tables.html">
+                        <a class="nav-link" href="/softcategories">
                             <i class="ni ni-bullet-list-67 text-default"></i>
-                            <span class="nav-link-text">Tables</span>
+                            <span class="nav-link-text">Deleted Category</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/softtags">
+                            <i class="fa fa-tags"></i>
+                            <span class="nav-link-text">Deleted Tags</span>
                         </a>
                     </li>
                 </ul>

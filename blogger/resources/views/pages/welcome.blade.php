@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-4 d-flex">
                         <div class="text w-100 pl-md-3">
-                            {{-- <span class="subheading">{{ $post->category->name }}</span> --}}
+                            <span class="subheading">{{ $post->category->name }}</span>
                             <h2><a href="{{ url('blog/'.$post->slug) }}">{{ $post->title }}</a></h2>
                             <ul class="media-social list-unstyled">
                                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>

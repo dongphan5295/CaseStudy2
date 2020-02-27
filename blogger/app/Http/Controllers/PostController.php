@@ -213,4 +213,25 @@ class PostController extends Controller
         return redirect()->route('posts.index');
 
     }
+
+    public function SoftDelete()
+    {
+        $posts = Post::onlyTrashed()->get();
+
+        return view('posts.softdelete', compact('posts'));
+
+    }
+
+    public function RestoreDelete($id)
+    {
+        Post::onlyTrashed()->where('id', '=' , $id)->restore();
+        return redirect()->route('posts.index');
+
+    }
+
+    public function HardDelete($id)
+    {
+        Post::onlyTrashed()->where('id', '=' , $id)->forceDelete();
+        return redirect()->route('posts.softdelete');
+    }
 }

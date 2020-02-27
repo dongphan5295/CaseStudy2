@@ -4,7 +4,7 @@
     <meta name="author" content="Creative Tim">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+    <title>Admin Manager @yield('title')</title>
     <!-- Favicon -->
 
     <link rel="icon" href="/imgages/brand/favicon.png" type="image/png">

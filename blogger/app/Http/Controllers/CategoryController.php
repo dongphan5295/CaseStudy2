@@ -137,4 +137,25 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index');
     }
+
+    public function SoftDelete()
+    {
+        $categories = Category::onlyTrashed()->get();
+
+        return view('categories.softdelete', compact('categories'));
+
+    }
+
+    public function RestoreDelete($id)
+    {
+        Category::onlyTrashed()->where('id', '=' , $id)->restore();
+        return redirect()->route('categories.test');
+
+    }
+
+    public function HardDelete($id)
+    {
+        Category::onlyTrashed()->where('id', '=' , $id)->forceDelete();
+        return redirect()->route('categories.softdelete');
+    }
 }

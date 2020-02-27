@@ -22,7 +22,14 @@ Route::group(['middleware' => ['web']], function () {
     // Authentication Routes
 
     Route::resource('categories', 'CategoryController', ['except' => ['create']]);
+    Route::get('softcategories', 'CategoryController@SoftDelete')->name('categories.softdelete');
+    Route::get('softcategories/{id}/restore', 'CategoryController@RestoreDelete')->name('categories.restore');
+    Route::get('softcategories/{id}/force', 'CategoryController@HardDelete')->name('categories.force');
+
     Route::resource('tags', 'TagController', ['except' => ['create']]);
+    Route::get('softtags', 'TagController@SoftDelete')->name('tags.softdelete');
+    Route::get('softtags/{id}/restore', 'TagController@RestoreDelete')->name('tags.restore');
+    Route::get('softtags/{id}/force', 'TagController@HardDelete')->name('tags.force');
 
 	Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comments.store']);
 	Route::get('comments/{id}/edit', ['uses' => 'CommentController@edit', 'as' => 'comments.edit']);
@@ -40,6 +47,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('about', 'PagesController@getAbout');
     Route::get('/', 'PagesController@getIndex');
     Route::resource('posts', 'PostController');
+    Route::get('softdelete', 'PostController@SoftDelete')->name('posts.softdelete');
+    Route::get('softdelete/{id}/restore', 'PostController@RestoreDelete')->name('posts.restore');
+    Route::get('softdelete/{id}/force', 'PostController@HardDelete')->name('posts.force');
 });
 
 

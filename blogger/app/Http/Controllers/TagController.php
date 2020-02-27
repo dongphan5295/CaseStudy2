@@ -32,7 +32,7 @@ class TagController extends Controller
                 return '
                 <div class="btn-group btn-group-sm">
                 <button type="button" class="btn btn-outline-primary edit-tag" data-toggle="modal" data-target="#tag-1" data-id ="' . $tags->id . '"><i
-        class="fa fa-edit"></i></button>'.'&emsp;'.
+                class="fa fa-edit"></i></button>'.'&emsp;'.
                 '<button type="button" class="btn btn-outline-primary delete-tag" data-toggle="modal" data-target="#confirm-modal" data-id ="' . $tags->id . '"><i
                 class="fa fa-trash"></i></button>
                 </div>';
@@ -121,5 +121,26 @@ class TagController extends Controller
         Session::flash('success', 'Tag was deleted successfully');
 
         return redirect()->route('tags.index');
+    }
+
+    public function SoftDelete()
+    {
+        $tags = Tag::onlyTrashed()->get();
+
+        return view('tags.softdelete', compact('tags'));
+
+    }
+
+    public function RestoreDelete($id)
+    {
+        Tag::onlyTrashed()->where('id', '=' , $id)->restore();
+        return redirect()->route('tags.index');
+
+    }
+
+    public function HardDelete($id)
+    {
+        Tag::onlyTrashed()->where('id', '=' , $id)->forceDelete();
+        return redirect()->route('tags.softdelete');
     }
 }
