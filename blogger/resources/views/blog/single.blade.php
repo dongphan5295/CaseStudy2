@@ -32,9 +32,9 @@
             @endif
             <p>{!! $post->body !!}</p>
             <hr>
-            {{-- <p>Posted By : {{ Auth::user()->name }}</p> --}}
-            <span> POSTED ON : {{ date('M j, Y', strtotime($post->updated_at))}} </span>
-            <span>THIS ENTRY WAS POSTED IN: {{  $post->category->name  }}</span>
+            <strong><span>Posted By :<a href="/about"> {{ Auth::user()->name }}</a></span></strong></br>
+            <strong>POSTED ON :</strong><span>  {{ date('M j, Y', strtotime($post->updated_at))}} </span></br>
+            <strong>THIS ENTRY WAS POSTED IN:</strong><span> {{  $post->category->name  }}</span>
             <div class="tagcloud">
                 @foreach ($post->tags as $tag)
                 <a href="#">{{ $tag->name}}</a>
@@ -111,28 +111,24 @@
                     <b class="fn"> {{ $comment->name }}</b>
                 </div>
                 <div>
-                    <time
-                        datetime="2017-04-27T21:46:43+07:00">{{ date('F dS, Y - g:iA' ,strtotime($comment->created_at)) }}</time>
+                    <time>{{ date('F dS, Y - g:iA' ,strtotime($comment->created_at)) }}</time> </br>
                 </div>
-                {{-- <p class="meta mb-3"></p> --}}
-
+                <div class="comment-content pt-3">
+                    <em><span>{{ $comment->comment }}</span></em>
+                </div>
+            </footer>
         </div>
-        </footer>
 
-        <div class="comment-content">
-            <span>{{ $comment->comment }}</span>
-            {{-- </div> --}}
 
-        </div>
         @endforeach
     </article>
     </div>
 </div>
 
-<div class="container">
+<div class="container pb-3">
     <div id="comment-form" class="col-md-8 col-md-offset-2" style="margin-top: 50px;">
         {{ Form::open(['route' => ['comments.store', $post->id], 'method' => 'POST']) }}
-
+        <span><p>LEAVE A REPLY  </p></span>
         <div class="row">
             <div class="col-md-6">
                 {{ Form::label('name', "Name:") }}

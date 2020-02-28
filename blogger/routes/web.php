@@ -14,7 +14,7 @@
 
 
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/admin', 'HomeController@index')->name('home');
 

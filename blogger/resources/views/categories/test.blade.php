@@ -91,7 +91,6 @@
         <!--/.Content-->
     </div>
 </div>
-<div ><a href="/posts"><i class="fa fa-undo "></i></a>
 </div>
 
 @stop

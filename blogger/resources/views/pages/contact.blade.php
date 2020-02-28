@@ -26,27 +26,31 @@
   </div>
 
     <div class="container pt-4">
+        {{-- <div class="container pt-3"> --}}
+            <p>Là một travel blogger, Mình dành nhiều thời gian để xê dịch, chụp ảnh và viết lách.</p>
+            <p>Nếu bạn có nhu cầu hợp tác cùng với mình theo phương diện đối tác hay cộng tác viên, mình rất vui được nhận thông tin từ bạn.</p>
+            <em>As a travel blogger, I spend most of my time on traveling, photography and writing.</em>
+            <em>Should you have any queries to cooperate with me as business partner or freelance contributor, please don’t hesitate to contact me.</em>
+        {{-- </div> --}}
+        <hr>
       <div class="row d-flex mb-5 contact-info">
         <div class="col-md-12 mb-4">
           <h2 class="h3">Contact Information</h2>
         </div>
-        <div class="w-100"></div>
-        <div class="col-md-3">
-          <p><span>Address :</span> 28 Nguyen Tri Phuong St, Phu Hoi Ward, Hue City</p>
-        </div>
-        <div class="col-md-3">
-          <p><span>Phone :</span> </p> <p> <a href="tel://1234567920">+84 123 456 789 </a></p>
-        </div>
-        <div class="col-md-3">
-          <p><span>Email :</span> <a href="mailto:info@yoursite.com">dongdontcare@outlook.com</a></p>
-        </div>
-        <div class="col-md-3">
-          <p><span>Website</span> <a href="#">dongdontcare.freevnn.com</a></p>
-        </div>
+        <div class="container">
+        <blockquote>
+          <strong><p>Address :</span> 28 Nguyen Tri Phuong St, Phu Hoi Ward, Hue City</p></strong>
+
+          <strong><p>Phone : +84 123 456 789 </p></strong>
+
+          <strong><p>Email : dongdontcare@outlook.com</p></strong>
+        </blockquote>
+    </div>
       </div>
+      <hr>
 
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-12">
                 <h1>Contact Me</h1>
                 <hr>
@@ -70,6 +74,6 @@
                     <input type="submit" value="Send Message" class="btn btn-success">
                 </form>
             </div>
-        </div>
+        </div> --}}
         </div>
 @endsection

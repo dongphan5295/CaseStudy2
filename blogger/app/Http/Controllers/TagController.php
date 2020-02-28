@@ -31,7 +31,7 @@ class TagController extends Controller
             ->addColumn('action', function ($tags) {
                 return '
                 <div class="btn-group btn-group-sm">
-                <button type="button" class="btn btn-outline-primary edit-tag" data-toggle="modal" data-target="#tag-1" data-id ="' . $tags->id . '"><i
+                <a href="tags/' .$tags->id.'" class="btn"><i class="fa fa-eye"></i></a>'.'&emsp;'.'<button type="button" class="btn btn-outline-primary edit-tag" data-toggle="modal" data-target="#tag-1" data-id ="' . $tags->id . '"><i
                 class="fa fa-edit"></i></button>'.'&emsp;'.
                 '<button type="button" class="btn btn-outline-primary delete-tag" data-toggle="modal" data-target="#confirm-modal" data-id ="' . $tags->id . '"><i
                 class="fa fa-trash"></i></button>
