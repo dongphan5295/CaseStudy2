@@ -42,8 +42,8 @@
 							<td>{{ $comment->email }}</td>
 							<td>{{ $comment->comment }}</td>
 							<td>
-								<a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
-								<a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+								<a href="{{ route('comments.edit', $comment->id) }}"><i class="fa fa-edit"></i></span></a>&emsp;
+								<a href="{{ route('comments.delete', $comment->id) }}" ><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 						@endforeach
@@ -55,7 +55,7 @@
 		<div class="col-md-4">
 			<div class="well">
 				<dl class="dl-horizontal">
-					<label>Url:</label>
+					<label>URL:</label>
 					<p><a href="{{ route('blog.single',$post->slug) }}">{{ route('blog.single',$post->slug) }}</a></p>
 				</dl>
 
@@ -74,9 +74,10 @@
 					<p>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</p>
 				</dl>
 				<hr>
-				<div class="row">
+				{{-- <div class="row">
 					<div class="col-sm-6">
                         {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
+                            <a href="{{route('posts.edit',$post->id )}}"><i class="fa fa-edit"></i></a>
 					</div>
 					<div class="col-sm-6">
 						{!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
@@ -85,7 +86,7 @@
 
 						{!! Form::close() !!}
 					</div>
-				</div>
+				</div> --}}
 
 				<div class="row">
 					<div class="col-md-12">

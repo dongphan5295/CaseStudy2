@@ -108,7 +108,7 @@
                 <thead>
                     <th>ID</th>
                     <th>Title</th>
-                    <th>Body</th>
+                    {{-- <th>Body</th> --}}
                     <th>Slug</th>
                     <th>Created At</th>
                     <th>Action</th>
@@ -185,7 +185,7 @@
                       }
                     },
             { data: 'title', name: 'title' },
-            { data: 'body', name: 'body' },
+            // { data: 'body', name: 'body' },
             { data: 'slug', name: 'slug' },
             { data: 'created_at', name: 'created_at' },
             { data: 'action', name: 'action' }
