@@ -1,5 +1,6 @@
 <?php
 
+use App\Tag;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -12,15 +13,41 @@ class TagTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tags')->insert([
-            'name' => 'Asia',
-            'name' => 'Europe',
-            'name' => 'Africa',
-            'name' => 'Visa',
-            'name' => 'Tips',
-            'name' => 'Food',
-            'name' => 'Lifetime',
-            'name' => 'Travel',
-        ]);
+
+        $tag = new Tag();
+        $tag->name = 'Asia';
+        $tag->save();
+
+        $tag = new Tag();
+        $tag->name = 'Europe';
+        $tag->save();
+
+        $tag = new Tag();
+        $tag->name = 'Africa';
+        $tag->save();
+
+        $tag = new Tag();
+        $tag->name = 'Visa';
+        $tag->save();
+
+        $tag = new Tag();
+        $tag->name = 'Tips';
+        $tag->save();
+
+        $tag = new Tag();
+        $tag->name = 'Food';
+        $tag->save();
+
+        $tag = new Tag();
+        $tag->name = 'Lifetime';
+        $tag->save();
+
+        $tag = new Tag();
+        $tag->name = 'Travel';
+        $tag->save();
+
+        $tag = new Tag();
+        $tag->name = 'Dailynews';
+        $tag->save();
     }
 }
