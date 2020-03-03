@@ -138,7 +138,7 @@ class PostController extends Controller
             'slug'          => 'required|min:5|max:255',
             'category_id'   => 'required',
             'body'          => 'required',
-            'image'  => 'mimes:jpeg,jpg,png,gif|max:10000|exists:posts,image'
+            'image'  => 'mimes:jpeg,jpg,png,gif|max:10000'
         ]);
         $post = Post::findORFail($id);
         $post->update($val);
