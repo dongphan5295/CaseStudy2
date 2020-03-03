@@ -9,6 +9,7 @@
     <div class="main-content">
 
     @include('dashboard.nav')
+    @include('dashboard.message')
 
       {{-- @include('dashboard.header') --}}
 

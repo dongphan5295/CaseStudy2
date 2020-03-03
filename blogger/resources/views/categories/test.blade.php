@@ -41,8 +41,10 @@
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label><strong>Category Name</strong> <small class="text-danger">*</small></label>
-                                    <input type="hidden"  id="cart" value="">
-                                    <input type="text" id="name" name="name" class="form-control"  value="">
+                                    <input type="hidden" id="cart" value="">
+                                    <input type="text" id="name" name="name" class="form-control" value="">
+                                    <p class="name-error text-danger"></p>
+
                                 </div>
                             </div>
 
@@ -117,10 +119,13 @@
         ]
     });
 
+
     $('#node').click(function(){
        $('.modal-title').text('Add New Category');
        $('#button-action').val('Add');
+       clearError();
     });
+
 
         $('#form_room_type').on('submit', function(e){
         e.preventDefault();
@@ -135,6 +140,9 @@
             url = `categories/${id}`
             typeMethod = 'PATCH'
         }
+        // if($('#form_room_type').valid(){
+
+        // }
         $.ajax({
             url: url,
             method: 'POST',
@@ -151,11 +159,18 @@
                 $('.modal-backdrop').remove()
             },
             error: function(err){
+                showError(err);
                 console.log(err);
             }
             });
         });
 
+        function showError(err){
+            err.responseJSON.errors.name ? $('.name-error').html(err.responseJSON.errors.name) : ''
+        }
+        function clearError(){
+            $('.name-error').empty()
+        }
         $.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -164,6 +179,7 @@
 
 
         $(document).on('click', '.edit-cate', function(){
+            clearError();
         let id = $(this).data('id');
         $.ajax({
             url: `categories/${id}/edit`,
@@ -175,6 +191,7 @@
 
             },
             error: function(err){
+                showError(err)
                 console.log(err)
             }
         })

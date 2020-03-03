@@ -4,7 +4,7 @@
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
             <h2 class="logo"><a href="#">Travel Blogger</a></h2>
-            <p>"Creating ideas and building brands that truly matter to people"</p>
+            <p>"As a travel blogger, I spend most of my time on traveling, photography and writing."</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
               <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
               <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -20,7 +20,7 @@
             <ul class="list-unstyled">
             <li><a href="/" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Home</a></li>
             <li><a href="/about" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>About</a></li>
-            <li><a href="{{route('blog.index')}}" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Articles</a></li>
+            <li><a href="{{route('blog.index')}}" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Blog</a></li>
               <li><a href="/contact" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Contact</a></li>
             </ul>
           </div>

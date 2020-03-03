@@ -8,7 +8,7 @@
 
     @include('partials.nav')
 
-      @include('partials.messages')
+      {{-- @include('partials.messages') --}}
 
       @yield('content')
 

@@ -6,6 +6,9 @@
 
     <title>Admin Manager @yield('title')</title>
     <!-- Favicon -->
+    {{-- <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"> --}}
+
+
 
     <link rel="icon" href="/imgages/brand/favicon.png" type="image/png">
     <!-- Fonts -->
@@ -19,4 +22,5 @@
 
     <link rel="stylesheet" href="/css/argon.css?v=1.2.0" type="text/css">
     <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 

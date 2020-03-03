@@ -6,7 +6,6 @@ use App\Category;
 use App\Comment;
 use App\Tag;
 use App\Post;
-use Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -31,19 +30,19 @@ class PostController extends Controller
         $tags = Tag::all();
         $comments = Comment::all();
 
-        if(request()->ajax()){
+        if (request()->ajax()) {
             return DataTablesDataTables::of($posts)
-            ->editColumn('body', function($posts){
-               $a = substr(strip_tags($posts->body), 0, 50);
-               return $a;
-            })->addColumn('action', function($posts){
-                return '<a href="posts/' .$posts->id.'" class="btn"><i class="fa fa-eye"></i></a>'.
-                '<button type="button" class="btn btn-outline-primary delete-post" data-toggle="modal" data-target="#confirm-modal" data-id ="' . $posts->id . '"><i
+                ->editColumn('body', function ($posts) {
+                    $a = substr(strip_tags($posts->body), 0, 50);
+                    return $a;
+                })->addColumn('action', function ($posts) {
+                    return '<a href="posts/' . $posts->id . '" class="btn"><i class="fa fa-eye"></i></a>' .
+                        '<button type="button" class="btn btn-outline-primary delete-post" data-toggle="modal" data-target="#confirm-modal" data-id ="' . $posts->id . '"><i
                 class="fa fa-trash"></i></button>'
-                . '<a href="posts/' .$posts->id.'/edit" class="btn"><i class="fa fa-edit"></i></a>';
-                        })
+                        . '<a href="posts/' . $posts->id . '/edit" class="btn"><i class="fa fa-edit"></i></a>';
+                })
 
-            ->make(true);
+                ->make(true);
         }
         return view('posts.dashboard')->withPosts($posts)->withCategories($categories)->withTags($tags)->withComments($comments);
     }
@@ -68,29 +67,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title'         => 'required|max:255',
-            'slug'          => 'required|alpha_dash|min:5|max:255',
-            'category_id'   => 'required|integer',
-            'body'          => 'required'
-        ]);
 
+        $this->validateAttribute();
         $post = new Post;
 
         $post->title = request('title');
-        $post->slug = request('slug');
+        $post->slug = str_replace(' ', '-', request('slug'));
         $post->category_id = request('category_id');
         $post->body = request('body');
 
-        if ($request->hasFile('featured_img')) {
-            $image = $request->file('featured_img');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/' . $filename);
-            Image::make($image)->resize(800, 400)->save($location);
-
-            $post->image = $filename;
-          }
-
+        $image = $request->file('image');
+        $images = base64_encode(file_get_contents($image));
+        $image2 = 'data:image/png;base64,' . $images;
+        $post->image = $image2;
 
         $post->save();
 
@@ -98,7 +87,7 @@ class PostController extends Controller
 
         Session::flash('success', 'The blog post was successfully !');
 
-        return redirect()->route('posts.show' , $post->id);
+        return redirect()->route('posts.show',$post->id);
     }
 
     /**
@@ -123,19 +112,16 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $categories = Category::all();
-        $cats = [];
-        foreach($categories as $category){
-            $cats[$category->id] = $category->name;
-        }
+        $category = Category::findOrFail($post->category_id);
 
         $tags = Tag::all();
         $tags2 = [];
-        foreach ($tags as $tag) {
-            $tags2[$tag->id] = $tag->name;
-        }
+        // foreach ($tags as $tag) {
+        //     $tags2[$tag->id] = $tag->name;
+        // }
 
 
-        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
+        return view('posts.edit', compact('post', 'category' , 'categories' , 'tags'));
     }
 
     /**
@@ -147,41 +133,28 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post = Post::find($id);
-
-        if (request('slug') == $post->slug) {
-            $this->validate($request, array(
-                'title' => 'required|max:255',
-                'category_id' => 'required|integer',
-                'body'  => 'required'
-            ));
-        } else {
-        $this->validate($request, [
-                'title' => 'required|max:255',
-                'slug'  => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-                'category_id' => 'required|integer',
-                'body'  => 'required'
+        $val = request()->validate([
+            'title'         => 'required|max:255|unique:posts,id,'. $id,
+            'slug'          => 'required|min:5|max:255',
+            'category_id'   => 'required',
+            'body'          => 'required',
+            'image'  => 'mimes:jpeg,jpg,png,gif|max:10000|exists:posts,image'
         ]);
-        }
-
-        $post = Post::find($id);
-
+        $post = Post::findORFail($id);
+        $post->update($val);
         $post->title = request('title');
         $post->body = request('body');
-        $post->slug = request('slug');
+        $post->slug = str_replace(' ', '-', request('slug'));
         $post->category_id = request('category_id');
 
-        if ($request->hasFile('featured_img')) {
-            $oldFilename = $post->image;
-            Storage::delete($oldFilename);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image = base64_encode(file_get_contents($image));
+            $image = 'data:image/png;base64,' . $image;
+            $post->image = $image;
+        }
 
-            $image = $request->file('featured_img');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/' . $filename);
-            Image::make($image)->resize(800, 400)->save($location);
-
-            $post->image = $filename;
-          }
+        $post->image = $post->image;
 
         $post->save();
 
@@ -208,10 +181,9 @@ class PostController extends Controller
         $post->tags()->detach();
         Storage::delete($post->image);
         $post->delete();
-        Session::flash('success', 'This post was successfully deleted');
+        Session::flash('warning', 'This post was successfully deleted');
 
         return redirect()->route('posts.index');
-
     }
 
     public function SoftDelete()
@@ -219,19 +191,28 @@ class PostController extends Controller
         $posts = Post::onlyTrashed()->get();
 
         return view('posts.softdelete', compact('posts'));
-
     }
 
     public function RestoreDelete($id)
     {
-        Post::onlyTrashed()->where('id', '=' , $id)->restore();
+        Post::onlyTrashed()->where('id', '=', $id)->restore();
         return redirect()->route('posts.index');
-
     }
 
     public function HardDelete($id)
     {
-        Post::onlyTrashed()->where('id', '=' , $id)->forceDelete();
+        Post::onlyTrashed()->where('id', '=', $id)->forceDelete();
         return redirect()->route('posts.softdelete');
+    }
+
+    public function validateAttribute()
+    {
+        return request()->validate([
+            'title'         => 'required|max:255|unique:posts',
+            'slug'          => 'required|min:5|max:255',
+            'category_id'   => 'required',
+            'body'          => 'required',
+            'image'  => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+        ]);
     }
 }

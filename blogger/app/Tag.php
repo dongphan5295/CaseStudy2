@@ -12,4 +12,8 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Post');
     }
+
+    public function posttag(){
+        return $this->posts()->first() !== null ? $this->posts()->first()->pivot->post_id : null;
+    }
 }

@@ -4,25 +4,36 @@
 
 @section('content')
 
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<h1>Edit Comment</h1>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h1>Edit Comment</h1>
 
-			{{ Form::model($comment, ['route' => ['comments.update', $comment->id], 'method' => 'PUT']) }}
+        <form action="{{ route('comments.update', $comment->id)}}" method="POST">
+            @csrf
+            @method('PUT')
 
-				{{ Form::label('name', 'Name:') }}
-				{{ Form::text('name', null, ['class' => 'form-control', 'disabled' => '']) }}
+            <label>Name* : </label>
+            <input type="text" name="name" class="form-control" disabled>
+            @error('name')
+            <p class="text-danger">{{ $errors->first('name') }}</p>
+            @enderror
 
-				{{ Form::label('email', 'Email:') }}
-				{{ Form::text('email', null, ['class' => 'form-control', 'disabled' => '']) }}
+            <label>Email*</label>
+            <input type="text" name="email" class="form-control" disabled>
+            @error('email')
+            <p class="text-danger">{{ $errors->first('email') }}</p>
+            @enderror
 
-				{{ Form::label('comment', 'Comment:') }}
-				{{ Form::textarea('comment', null, ['class' => 'form-control']) }}
+            <label>Comment*</label>
+            <textarea name="comment" cols="30" rows="10" class="form-control"></textarea>
+            @error('comment')
+            <p class="text-danger">{{ $errors->first('comment') }}</p>
+            @enderror
 
-				{{ Form::submit('Update Comment', ['class' => 'btn btn-block btn-success', 'style' => 'margin-top: 15px;']) }}
+            <input type="submit" value="Update Comment" class="btn btn-block btn-success" style="margin-top: 15px;">
 
-			{{ Form::close() }}
-		</div>
-	</div>
+        </form>
+    </div>
+</div>
 
 @endsection

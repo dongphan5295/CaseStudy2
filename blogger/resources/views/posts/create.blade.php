@@ -16,40 +16,55 @@
 <div class=" pt-5">
     <div class="col-md-8 col-md-offset-2">
         <h1>Create New Post</h1>
-        {{-- <hr> --}}
-        {!! Form::open(array('route' => 'posts.store', 'data-parsley-validate' => '', 'files' => true)) !!}
-        {{ Form::label('title', 'Title:') }}
-        {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
+        <hr>
+        <form action="{{ route('posts.store') }}" enctype="multipart/form-data" method="POST">
+            @csrf
+            <label>Title* </label>
+            <input type="text" name="title" class="form-control" >
+            @error('title')
+            <p class="text-danger">{{ $errors->first('title') }}</p>
+            @enderror
 
-        {{ Form::label('slug', 'Slug:') }}
-        {{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255') ) }}
+            <label>Slug* </label>
+            <input type="text" name="slug" class="form-control" >
+            @error('slug')
+            <p class="text-danger">{{ $errors->first('slug') }}</p>
+            @enderror
 
-        {{ Form::label('category_id', 'Category:') }}
-        <select class="form-control" name="category_id">
-            @foreach($categories as $category)
-            <option value='{{ $category->id }}'>{{ $category->name }}</option>
-            @endforeach
+            <label>Category* </label>
+            <select class="form-control" name="category_id">
+                @foreach($categories as $category)
+                <option value='{{ $category->id }}'>{{ $category->name }}</option>
+                @endforeach
+            </select>
+            @error('category_id')
+            <p class="text-danger">{{ $errors->first('category_id') }}</p>
+            @enderror
 
-        </select>
+            <label>Tags* </label>
+            <select class="form-control select2-multi" name="tags[]" multiple="multiple">
+                @foreach($tags as $tag)
+                <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
+                @endforeach
+            </select>
+
+            <label><strong>Image</strong> <small class="text-danger">*</small></label>
+            <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" name="image">
+            <div> <img src="" id="image-holder" style="height: 200px"></div>
+            @error('image')
+            <p class="text-danger">{{ $errors->first('image') }}</p>
+            @enderror
 
 
-        {{ Form::label('tags', 'Tags:') }}
-        <select class="form-control select2-multi" name="tags[]" multiple="multiple">
-            @foreach($tags as $tag)
-            <option value='{{ $tag->id }}'>{{ $tag->name }}</option>
-            @endforeach
-
-        </select>
-
-        {{ Form::label('featured_img', 'Upload a Featured Image') }}
-        {{ Form::file('featured_img') }}
-
-        <p>{{ Form::label('body', "Post Body:") }}</p>
-        {{ Form::textarea('body', null , ['id' => 'editor','class' => 'form-control', 'placeholder' => 'Body Text']) }}
+            <label>Post Body* </label>
+            <textarea name="body" id="editor" class="form-control" placeholder="Body Text"></textarea>
+            @error('body')
+            <p class="text-danger">{{ $errors->first('body') }}</p>
+            @enderror
 
 
-        {{ Form::submit('Create Post', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;')) }}
-        {!! Form::close() !!}
+            <input type="submit" class="btn btn-success btn-lg btn-block" style="margin-top: 20px;" value="Create Post">
+        </form>
     </div>
 </div>
 

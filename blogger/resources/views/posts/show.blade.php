@@ -10,7 +10,7 @@
 	<div class="container pt-4">
 		<div class="col-md-8">
         <h1>{{ $post->title }}</h1>
-        <img src="{{ asset('images/'.$post->image)}}" alt="This is a photo">
+        <img src="{{ $post->image }}" alt="This is a photo">
 
 		<p class="lead">{!! $post->body !!}</p>
 

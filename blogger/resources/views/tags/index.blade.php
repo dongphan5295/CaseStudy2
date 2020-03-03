@@ -6,8 +6,8 @@
 
 <div class="container">
     <div class="col-md-3 pt-3">
-            <button type="button" id="node" class="btn btn-primary" data-toggle="modal" data-target="#tag-1"><i
-                    class="fa fa-plus"></i> Add New Tag</button>
+        <button type="button" id="node" class="btn btn-primary" data-toggle="modal" data-target="#tag-1"><i
+                class="fa fa-plus"></i> Add New Tag</button>
     </div>
 
     <div class="col-md-8 pt-3">
@@ -45,6 +45,7 @@
                                     <label><strong>Tag Name</strong> <small class="text-danger">*</small></label>
                                     <input type="hidden" name="cart" id="cart" value="">
                                     <input type="text" id="name" name="name" class="form-control">
+                                    <p class="name-error text-danger"></p>
                                 </div>
                             </div>
 
@@ -53,7 +54,7 @@
                                     <hr />
                                     <button type="reset" class="btn btn-outline-primary"><i class="fa fa-refresh"></i>
                                         Reset</button>
-                                        <input type="hidden" id="button-action">
+                                    <input type="hidden" id="button-action">
                                     <button type="submit" class="btn btn-primary btn-submit" name="action_button"
                                         id="action_button"><i class="fa fa-save"></i>
                                         Save</button>
@@ -155,12 +156,22 @@
                 $('.modal-backdrop').remove()
             },
             error: function(err){
+                showError(err);
                 console.log(err);
             }
         })
       })
 
+      function showError(err){
+            err.responseJSON.errors.name ? $('.name-error').html(err.responseJSON.errors.name) : ''
+        }
+
+        function clearError(){
+            $('.name-error').empty()
+        }
+
       $(document).on('click', '.edit-tag', function(){
+        clearError()
         let id = $(this).data('id');
         $.ajax({
             url: `tags/${id}/edit`,
@@ -188,7 +199,7 @@
         let id = $(this).data('id');
         $('#delete-id').val(id);
     })
-    
+
 
     $('#form-delete').on('submit', function(e){
         e.preventDefault();
@@ -218,4 +229,3 @@
 });
 </script>
 @endpush
-
