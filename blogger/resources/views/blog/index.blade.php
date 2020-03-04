@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
         <div class="col-md-12 ftco-animate">
-            <h1 class="mb-4 mb-md-0">Newest Blog</h1>
+            <h1 class="mb-4 mb-md-0">Single Blog</h1>
             <div class="row">
                 <div class="col-md-7">
                     <div class="text">
@@ -42,7 +42,7 @@
                 <span>{{ date('M j, Y', strtotime($post->updated_at)) }}</span>
               </div>
               <h3 class="heading mb-3"><a href="{{  route('blog.single', $post->slug)  }}">{{ $post->title }}</a></h3>
-            {{-- <p>{{ substr(strip_tags($post->body), 0, 250) }}</p> --}}
+            <p>{{ substr(strip_tags($post->body), 0, 250) }}</p>
             <p><a href="{{  route('blog.single', $post->slug)  }}" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read more</a></p>
           </div>
         </div>

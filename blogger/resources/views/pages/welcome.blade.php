@@ -46,13 +46,16 @@
                             <h2><a href="{{ url('blog/'.$post->slug) }}">{{ $post->title }}</a></h2>
                             <ul class="media-social list-unstyled">
                                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                                <li class="ftco-animate"><a
+                                        href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url('zblog/'.$post->slug)) }}"><span
+                                            class="icon-facebook"></span></a></li>
                                 <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-
-                                <div class="meta">
-                                    <p class="mb-0"><a href="#"><span class="icon-time"></span> {{ date('M j, Y', strtotime($post->created_at)) }} </a> |
-                                        <a href="#"><span class="icon-person"></span> Admin</a></p>
-                                </div>
+                            </ul>
+                            <div class="meta">
+                                <p class="mb-0"><a href="#"><span class="icon-time"></span>
+                                        {{ date('M j, Y', strtotime($post->created_at)) }} </a> |
+                                    <a href="#"><span class="icon-person"></span> Admin</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>

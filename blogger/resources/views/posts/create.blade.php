@@ -87,5 +87,6 @@
 	// 		console.error( error );
 	// 	} );
     CKEDITOR.replace( 'editor' );
+    CKEDITOR.config.entities = false;
 </script>
 @endsection
