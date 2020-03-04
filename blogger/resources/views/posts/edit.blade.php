@@ -110,6 +110,7 @@ $.each($(".select2-multi option:selected"), function() {
 
 <script>
     CKEDITOR.replace( 'editor' );
+    CKEDITOR.config.entities = false;
 
 </script>
 

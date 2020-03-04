@@ -23,7 +23,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">See more <i class="fa fa-arrow-circle-down"></i></a>
+                            {{-- <a href="#">See more <i class="fa fa-arrow-circle-down"></i></a> --}}
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/categories">See more <i class="fa fa-arrow-circle-right"></i></a>
+                            {{-- <a href="/categories">See more <i class="fa fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/tags">See more <i class="fa fa-arrow-circle-right"></i></a>
+                            {{-- <a href="/tags">See more <i class="fa fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">See more <i class="fa fa-arrow-circle-right"></i></a>
+                            {{-- <a href="#">See more <i class="fa fa-arrow-circle-right"></i></a> --}}
                         </div>
                     </div>
                 </div>
