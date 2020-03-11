@@ -54,7 +54,9 @@
                             <div class="meta">
                                 <p class="mb-0"><a href="#"><span class="icon-time"></span>
                                         {{ date('M j, Y', strtotime($post->created_at)) }} </a> |
-                                    <a href="#"><span class="icon-person"></span> Admin</a></p>
+                                    <a href="#"><span class="icon-person"></span> Admin</a> | <a href=""><span
+                                            class="icon-comment"> {{$post->comments()->count()}}</span></a>
+                                    |<a href=""><span class="icon-eye"> {{$post->view_count}}</span></a></p>
                             </div>
                         </div>
                     </div>

@@ -44,7 +44,7 @@ class PostController extends Controller
 
                 ->make(true);
         }
-        return view('posts.dashboard')->withPosts($posts)->withCategories($categories)->withTags($tags)->withComments($comments);
+        return view('posts.dashboard',compact('posts','categories', 'tags', 'comments'));
     }
 
     /**

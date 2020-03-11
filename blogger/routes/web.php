@@ -41,6 +41,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
     Route::get('blog', [ 'uses' => 'BlogController@getIndex' , 'as' => 'blog.index']);
     Route::get('blogs/{id}', [ 'uses' => 'BlogController@getCategory' , 'as' => 'blogs.types']);
+    Route::get('blogs/tags/{id}', [ 'uses' => 'BlogController@getTags' , 'as' => 'blogs.tags']);
     Route::get('/keyword', 'BlogController@getSearch')->name('keyword.search');
     Route::get('contact', 'PagesController@getContact');
     Route::post('contact', 'PagesController@postContact');

@@ -25,9 +25,9 @@
 <div class="container pt-4">
     <div class="row">
         <div class="col-lg-8 ftco-animate">
-            @if(!empty($post->image))
+            {{-- @if(!empty($post->image))
             <p class="mb-5"><img src="{{$post->image}}" width="800" height="400" /></p>
-            @endif
+            @endif --}}
             <h1 class="mb-3"><strong>{{ $post->title }}</strong></h1>
             <p>{!! $post->body !!}</p>
             <div class="tag-widget post-tag-container mb-5 mt-5">
@@ -39,8 +39,9 @@
             </div>
             <hr>
             <span>Posted By :<a href="/about"> Đông Phan</a></span></br>
-            <span>POSTED ON : {{ date('M j, Y', strtotime($post->updated_at))}} </span></br>
-            <span>THIS ENTRY WAS POSTED IN: {{  $post->category->name  }}</span>
+            <span>Posted On : {{ date('H:i:s - d/m/Y', strtotime($post->updated_at))}} </span></br>
+            <span>This entry was posted in : <a
+                    href="{{ route('blogs.types', $post->category->name). '?id=' .$post->category->id }}">{{  $post->category->name   }}</span>
             <hr>
 
             <div class="pt-5 mt-5">
@@ -122,7 +123,7 @@
             </div>
 
             <div class="sidebar-box ftco-animate">
-                <h3>Newest Blog</h3>
+                <h3>Hottest Blog</h3>
                 @foreach ($pst as $pt)
                 <div class="block-21 mb-4 d-flex">
                     <a href="{{  route('blog.single', $pt->slug) }}" class="blog-img mr-4"
@@ -130,10 +131,9 @@
                     <div class="text">
                         <h3 class="heading"><a href="{{  route('blog.single', $pt->slug)  }}">{{ $pt->title }}</a></h3>
                         <div class="meta">
-                            <div><a href="#"><span class="icon-calendar"></span>
-                                    {{ date('M j, Y', strtotime($pt->updated_at))}}</a></div>
+                            <div><a href="#"><span class="icon-comment"> {{$pt->comments()->count()}}</span></a></div>
+                            <div><a href="#"><span class="icon-eye"> {{$pt->view_count}}</span></a></div>
                             <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span class="icon-chat"></span> {{ $pt->comments()->count() }}</a></div>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,8 @@
                 <h3>Tag Cloud</h3>
                 <div class="tagcloud">
                     @foreach ($tags as $tag)
-                    <a href="#" class="tag-cloud-link">{{ $tag->name }}</a>
+                    <a href="{{ route('blogs.tags', $tag->name). '?id=' .$tag->id }}"
+                        class="tag-cloud-link">{{ $tag->name }}</a>
                     @endforeach
                 </div>
             </div>

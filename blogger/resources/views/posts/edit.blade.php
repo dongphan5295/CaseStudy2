@@ -46,7 +46,9 @@
             <label class="form-spacing-top">Tags*</label>
             <select class="form-control select2-multi" name="tags[]" multiple="multiple">
                 @foreach($tags as $key=>$tag)
-                <option value='{{ $tag->id }}' {{ $post->tags->where('id', $tag->id ) !== [] ? ($post->tags->where('id', $tag->id )->first() ? 'selected' : null) : null}}>{{ $tag->name }}</option>
+                <option value='{{ $tag->id }}'
+                    {{ $post->tags->where('id', $tag->id ) !== [] ? ($post->tags->where('id', $tag->id )->first() ? 'selected' : null) : null}}>
+                    {{ $tag->name }}</option>
                 @endforeach
             </select>
 
@@ -97,7 +99,7 @@
 <script src="/js/select2.min.js"></script>
 
 <script type="text/javascript">
-let selected = new Array();
+    let selected = new Array();
 $.each($(".select2-multi option:selected"), function() {
 			selected.push($(this).val());
 		});
@@ -110,6 +112,7 @@ $.each($(".select2-multi option:selected"), function() {
 
 <script>
     CKEDITOR.replace( 'editor' );
+    CKEDITOR.config.height = 500;
     CKEDITOR.config.entities = false;
 
 </script>

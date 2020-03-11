@@ -15,7 +15,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Total Post</h5>
-                                <span class="h2 font-weight-bold mb-0">{{ $posts->count()  }}</span>
+                                    <span class="h2 font-weight-bold mb-0">{{ $posts->count()  }}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -95,7 +95,8 @@
     <div class="row pt-4">
 
         <div class="col-md-3">
-            <a href="{{ route('posts.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing"><i class="fas fa-plus"></i> Create New
+            <a href="{{ route('posts.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing"><i
+                    class="fas fa-plus"></i> Create New
                 Post</a>
         </div>
         <div class="col-md-12">
@@ -192,13 +193,6 @@
         ]
     });
 
-    // $('.delete-post').click(function(){
-    //     console.log(2);
-    //     let id = $(this).data('id');
-    //     $('#delete-id').val(id);
-    //             console.log( $('#delete-id').val())
-
-    // });
     $.ajaxSetup({
             headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

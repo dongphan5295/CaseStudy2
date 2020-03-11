@@ -4,8 +4,10 @@
 
 @section('stylesheets')
 
-{!! Html::style('css/parsley.css') !!}
-{!! Html::style('css/select2.min.css') !!}
+{{-- {!! Html::style('css/parsley.css') !!} --}}
+<link rel="stylesheet" href="/css/parsley.css">
+{{-- {!! Html::style('css/select2.min.css') !!} --}}
+<link rel="stylesheet" href="/css/select2.min.css">
 {{-- <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script> --}}
 
 
@@ -88,5 +90,7 @@
 	// 	} );
     CKEDITOR.replace( 'editor' );
     CKEDITOR.config.entities = false;
+    CKEDITOR.config.height = 500;
+
 </script>
 @endsection
