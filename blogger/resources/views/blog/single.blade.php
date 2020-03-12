@@ -38,6 +38,7 @@
                 </div>
             </div>
             <hr>
+            <div class="fb-like" data-href="http://blogger-demo.herokuapp.com/blog/{{ $post->slug }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></br>
             <span>Posted By :<a href="/about"> Đông Phan</a></span></br>
             <span>Posted On : {{ date('H:i:s - d/m/Y', strtotime($post->updated_at))}} </span></br>
             <span>This entry was posted in : <a href="{{ route('blogs.types', $post->category->name). '?id=' .$post->category->id }}">{{  $post->category->name   }}</a></span>
@@ -151,4 +152,31 @@
         </div>
     </div>
 </div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+{{-- <div class="container">
+    <h1 class="h1">Articles</h1>
+    <div class="row">
+        <div class="col-md-12" style="background-color:#efefef">
+            @foreach($blog_post as $post)
+                <h3 class="h2">{{ $post->title }}</h3>
+                <p>{{ $post->description }}</p>
+                <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                <hr>
+            @endforeach
+        </div>
+    </div>
+</div> --}}
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 @endsection

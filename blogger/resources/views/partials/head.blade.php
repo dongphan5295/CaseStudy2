@@ -19,6 +19,9 @@
 <title>Travel Blog @yield('title')</title>
 <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
 <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="/css/animate.css">
 

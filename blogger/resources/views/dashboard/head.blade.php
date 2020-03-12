@@ -9,7 +9,6 @@
     {{-- <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"> --}}
 
 
-
     <link rel="icon" href="/imgages/brand/favicon.png" type="image/png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=PT+Serif&display=swap" rel="stylesheet">
