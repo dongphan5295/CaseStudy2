@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 use App\Tag;
+use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -19,12 +20,13 @@ class BlogController extends Controller
     public function getSingle($slug){
         $post = Post::where('slug', $slug )->first();
 
-        $key = 'blog_' . $post->id;
+        $key = 'blog_'.$post->id;
+        // $view = Session::get($key);
 
-        if(Session::has($key))
+        if(!Session::get($key))
         {
-            $post->increment('view_count',1);
             Session::put($key, 1);
+            $post->increment('view_count');
         }
 
         $pst = Post::orderBy('view_count', 'desc')->limit(5)->get();
