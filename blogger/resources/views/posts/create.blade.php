@@ -75,8 +75,10 @@
 
 @section('scripts')
 
-{!! Html::script('js/parsley.min.js') !!}
-{!! Html::script('js/select2.min.js') !!}
+{{-- {!! Html::script('js/parsley.min.js') !!} --}}
+<script src="/js/parsley.min.js"></script>
+<script src="/js/select2.min.js"></script>
+{{-- {!! Html::script('js/select2.min.js') !!} --}}
 
 <script type="text/javascript">
     $('.select2-multi').select2();

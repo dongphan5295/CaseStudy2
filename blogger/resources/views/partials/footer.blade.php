@@ -3,7 +3,7 @@
       <div class="row mb-5">
         <div class="col-md">
           <div class="ftco-footer-widget mb-4">
-            <h2 class="logo"><a href="#">Travel Blogger</a></h2>
+            <h2 class="logo"><a href="#">Travel Blog</a></h2>
             <p>"As a travel blogger, I spend most of my time on traveling, photography and writing."</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
               <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>

@@ -10,7 +10,7 @@
             data-scrollax-parent="true">
             <div class="col-md-12 ftco-animate">
                 <h2 class="subheading">Hello! Welcome to</h2>
-                <h1 class="mb-4 mb-md-0">Crush Blog</h1>
+                <h1 class="mb-4 mb-md-0">Travel Blog</h1>
                 <div class="row">
                     <div class="col-md-7">
                         <div class="text">

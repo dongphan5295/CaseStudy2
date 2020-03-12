@@ -40,8 +40,7 @@
             <hr>
             <span>Posted By :<a href="/about"> Đông Phan</a></span></br>
             <span>Posted On : {{ date('H:i:s - d/m/Y', strtotime($post->updated_at))}} </span></br>
-            <span>This entry was posted in : <a
-                    href="{{ route('blogs.types', $post->category->name). '?id=' .$post->category->id }}">{{  $post->category->name   }}</span>
+            <span>This entry was posted in : <a href="{{ route('blogs.types', $post->category->name). '?id=' .$post->category->id }}">{{  $post->category->name   }}</a></span>
             <hr>
 
             <div class="pt-5 mt-5">
