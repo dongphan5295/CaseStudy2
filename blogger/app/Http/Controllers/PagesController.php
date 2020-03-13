@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -39,25 +40,31 @@ class PagesController extends Controller
     public function postContact(Request $request)
     {
         $this->validate($request, [
+            'name' => 'required',
             'email' => 'required|email',
-            'subject' => 'min:3',
-            'message' => 'min:10'
+            'subject' => 'required|min:3',
+            'message' => 'required|min:10'
         ]);
 
-        $data = array(
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'bodyMessage' => $request->message
+        $contact = $request->all();
+        $contact = Contact::create($contact);
+        $contact->save();
+
+        Mail::send(
+            'pages.contact_email',
+            array(
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'subject' => $request->get('subject'),
+                'user_message' => $request->get('message'),
+            ),
+            function ($message) use ($request) {
+                $message->subject('New Contact Mail Travel Blogger');
+                $message->from($request->email);
+                $message->to('dongdt22k13@gmail.com');
+            }
         );
 
-        Mail::send('email.contact', $data, function ($message) use ($data) {
-            $message->from($data['email']);
-            $message->to('hello@devmarketer.io');
-            $message->subject($data['subject']);
-        });
-
-        Session::flash('success', 'Your Email was Sent!');
-
-        return redirect('/');
+        return back()->with('success', 'Thank you for contact us!');
     }
 }
